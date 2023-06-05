@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Reader</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/@zxing/library@0.18.5"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <html manifest="tetris.manifest"> 
+        <head> <meta name="viewport" 
+            content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/> 
+            <meta name="apple-mobile-web-app-capable" content="yes" /> 
+            <meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
+            <link rel="apple-touch-icon" href="iphon_tetris_icon.png"/> 
+            <link rel="apple-touch-startup-image" href="startup.png" /> 
+            <link rel="stylesheet" href="style.css" type="text/css" media="screen, mobile" title="main" charset="utf-8"> 
+</head>
+<body>
+    <div id="content" scale = 100%>
+        <video id="video" width="400" height="400" autoplay></video>
+    </div>
+    <script>
+        const codeReader = new ZXing.BrowserQRCodeReader();
+        codeReader.decodeOnceFromVideoDevice(undefined, 'video').then(result => {
+            console.log(result.text)
+            $(document).ready(function() {
+            $("#content").html(result.text);
+        });
+        }).catch(err => {
+            console.error(err);
+            alert('Error decoding QR code. Please try again.');
+        });
+    </script>
+        <style>
+            video {
+                padding-left: 40%;
+            }
+            body { overflow:hidden; background: #d7d7d7; margin:0; padding:0; } #tetris { width: 320px; height: 460px; background:#000; } 
+        </style>
+</body>
+</html>
