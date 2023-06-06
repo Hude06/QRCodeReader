@@ -4,10 +4,17 @@
     <title>Run HTML Code in JavaScript</title>
 </head>
 <body>
+    <h2 id = "Score">Score: 0</h2>
     <button id="Button"onclick="MoveButton()">Click Me</button>
     <style>
+        h2{
+            color:rgb(0, 0, 0);
+        }
+        body{
+            background-color: rgb(245, 69, 69);
+        }
         button{
-            background-color: #4CAF50; /* Green */
+            background-color: #000000; /* Green */
             border: none;
             color: white;
             padding: 15px 32px;
@@ -15,15 +22,26 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
+            top: 40%;
+            left: 45%;
+            background-color: #038354;
+            border-radius: 4px
         }
     </style>
     <script>
         let x = 100;
         let y = 100;
+        let score2 = 0;
         var button = document.getElementById("Button");
+        var score = document.getElementById("Score");
+
         function MoveButton() {
-            x = Math.floor(Math.random() * 250); 
-            y = Math.floor(Math.random() * 250); 
+            score2 += 1
+            score.innerHTML = "Score: " + score2
+            console.log("Inner" + window.innerWidth,window.innerHeight)
+            x = Math.floor(Math.random() * (400)) 
+            y = Math.floor(Math.random() * (400)) 
+            console.log(x,y)
             button.style.top = x+"px";
             button.style.left = y+"px";
 
